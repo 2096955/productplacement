@@ -2,6 +2,7 @@
   "name": "hsbc-ssr-concept-lab-web",
   "private": true,
   "version": "1.0.0",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

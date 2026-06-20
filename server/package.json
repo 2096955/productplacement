@@ -2,6 +2,7 @@
   "name": "ssr-banking-concept-lab-server",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "description": "HSBC SSR Concept Lab — backend (Express + Vertex AI via @google/genai)",
   "type": "module",
   "engines": {
