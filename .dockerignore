@@ -1,0 +1,43 @@
+# Keep the build context small and reproducible.
+# node_modules are reinstalled inside the image via `npm ci`.
+
+**/node_modules
+**/dist
+**/.git
+.git
+**/*.log
+logs
+
+# Local tooling / editor cruft
+.cursor
+**/.cursor
+.DS_Store
+**/.DS_Store
+.vscode
+.idea
+
+# Local env files must never enter the image
+.env
+**/.env
+**/.env.*
+
+# Credential material must never enter the build context (defence in depth;
+# mirrors .gitignore). The runtime stage copies only build artefacts, but these
+# also keep secrets out of the intermediate build layers.
+*.pem
+*.p12
+*-key.json
+key.json
+application_default_credentials.json
+service-account*.json
+gha-creds-*.json
+
+# Build/runtime metadata not needed in the image
+Dockerfile
+.dockerignore
+docker-compose.yml
+deploy
+docs
+*.md
+PROTOTYPE_REFERENCE.jsx
+**/PROTOTYPE_REFERENCE.jsx

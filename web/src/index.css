@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  background:
+    radial-gradient(1100px 560px at 100% -8%, rgba(219, 0, 17, 0.05), transparent 60%),
+    radial-gradient(900px 520px at -8% 108%, rgba(14, 124, 114, 0.05), transparent 55%),
+    #f1f2f3;
+  background-attachment: fixed;
+  color: #1c1c1c;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Editorial display face for hero moments (wordmark, headings, KPI numerals). */
+.font-display {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+}
+
+/* Accessible focus rings for keyboard users. */
+*:focus-visible {
+  outline: 2px solid #db0011;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

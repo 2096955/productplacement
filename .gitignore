@@ -1,0 +1,24 @@
+# dependencies & build output
+node_modules/
+dist/
+*.tsbuildinfo
+
+# logs
+*.log
+npm-debug.log*
+
+# environment & credentials (never commit)
+.env
+.env.*
+*.pem
+*.p12
+*-key.json
+key.json
+application_default_credentials.json
+service-account*.json
+gha-creds-*.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

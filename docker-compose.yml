@@ -1,0 +1,44 @@
+# ============================================================
+# One-command local run of the HSBC SSR Concept Lab.
+#
+#   docker compose up --build
+#
+# Then open http://localhost:8080  (health: /api/health).
+#
+# With no Vertex env vars set, the service runs in pure offline
+# SAMPLE mode — perfect for a laptop / offline demo. To exercise
+# LIVE mode locally, uncomment the VERTEX_* vars below and mount
+# Application Default Credentials (see the comment block).
+# ============================================================
+
+services:
+  concept-lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ssr-concept-lab:latest
+    container_name: ssr-concept-lab
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: "8080"
+      WEB_DIST: /app/web/dist
+      # --- Optional LIVE mode (Vertex AI). Leave commented for SAMPLE mode. ---
+      # ENABLE_VERTEX: "true"
+      # VERTEX_PROJECT: your-gcp-project-id
+      # VERTEX_LOCATION: us-central1
+      # GEMINI_MODEL: gemini-2.5-flash
+      # EMBED_MODEL: gemini-embedding-001
+      # SSR_TEMPERATURE: "0.05"
+      # VERTEX_TIMEOUT_MS: "20000"
+      # GOOGLE_APPLICATION_CREDENTIALS: /var/run/adc/key.json
+    # --- To use Application Default Credentials locally, mount your key: ---
+    # volumes:
+    #   - ${HOME}/.config/gcloud/application_default_credentials.json:/var/run/adc/key.json:ro
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8080/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
